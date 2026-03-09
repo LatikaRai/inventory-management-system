@@ -1,11 +1,15 @@
 import Button from "../components/Button"
+import { Link } from 'react-router-dom'
 
 
 const Contact = () => {
   return (
     <div className="h-screen w-full flex flex-col items-start justify-center gap-6 px-20 bg-black text-white">
       <div className="flex items-center text-[#10B981] gap-2">
-        <h2><i className="ri-arrow-left-long-line"></i>Back to Home</h2>
+        <Link to="/" className="flex items-center gap-2">
+          <i className="ri-arrow-left-long-line"></i>
+          <span>Back to Home</span>
+        </Link>
         <h2 className="bg-[#10B981]/20 text-[0.8rem] py-1 px-3 rounded-full">CONTACT</h2>
       </div>
       <h1 className="text-6xl font-black font-['Syne']">Get in touch <br /><span className="text-[#10B981]">with our team.</span></h1>

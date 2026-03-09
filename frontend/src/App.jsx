@@ -1,25 +1,28 @@
-import React from 'react'
-import LandingPage from './pages/LandingPage'
 import Nav from './components/Nav'
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
+import Home from './pages/Home'
 import MockDashboard from './pages/MockDashboard'
 import Features from './pages/Features'
-import CTA from './pages/CTA'
-import StatsBar from './components/StatsBar'
 import Contact from './pages/Contact'
 import Login from './pages/Login'
 
 const App = () => {
+  const location = useLocation()
+  const hideNavOnRoutes = new Set(['/login'])
+  const shouldHideNav = hideNavOnRoutes.has(location.pathname)
+
   return (
-    <div>
-      <Nav/>
-      <LandingPage/>
-      <StatsBar/>
-      <MockDashboard/>
-      <Features/>
-      <CTA/>
-      <Contact/>
-      <Login/>
-    </div>
+    <>
+      {!shouldHideNav && <Nav />}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/features" element={<Features />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/dashboard" element={<MockDashboard />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </>
   )
 }
 
